@@ -47,7 +47,10 @@
 #include "bhv_set_play_indirect_free_kick.h"
 #include "bhv_basic_offensive_kick.h"
 #include "bhv_custom_before_kick_off.h"
-#include "bhv_strict_check_shoot.h"
+//#include "bhv_strict_check_shoot.h"
+#include "bhv_go_to_static_ball.h"
+#include "bhv_go_to_ball.h"
+#include "bhv_kick_to_goal.h"
 
 #include "view_tactical.h"
 
@@ -65,6 +68,8 @@
 #include <rcsc/action/neck_turn_to_ball_or_scan.h>
 #include <rcsc/action/view_synch.h>
 #include <rcsc/action/neck_turn_to_point.h>
+#include <rcsc/action/body_hold_ball.h>
+#include <rcsc/action/bhv_go_to_point_look_ball.h>
 
 #include <rcsc/formation/formation.h>
 #include <rcsc/action/kick_table.h>
@@ -173,20 +178,15 @@ SamplePlayer::~SamplePlayer()
 bool
 SamplePlayer::initImpl( CmdLineParser & cmd_parser )
 {
-    if ( KickTable::instance().read( config().configDir() + "/kick-table" ) )
-    {
-        std::cerr << "Loaded the kick table: ["
-                  << config().configDir() << "/kick-table]"
-                  << std::endl;
-    }
+    
 
-    return true;
-/*    bool result = PlayerAgent::initImpl( cmd_parser );
+  
+    bool result = PlayerAgent::initImpl( cmd_parser );
 
     // read additional options
     result &= Strategy::instance().init( cmd_parser );
-
-    rcsc::ParamMap my_params( "Additional options" );
+      
+      rcsc::ParamMap my_params( "Additional options" );
 #if 0
     std::string param_file_path = "params";
     param_map.add()
@@ -212,14 +212,20 @@ SamplePlayer::initImpl( CmdLineParser & cmd_parser )
     {
         return false;
     }
-
+    if ( KickTable::instance().read( config().configDir() + "/kick-table" ) )
+    {
+        std::cerr << "Loaded the kick table: ["
+                  << config().configDir() << "/kick-table]"
+                  << std::endl;
+    }
     if ( ! Strategy::instance().read( config().configDir() ) )
     {
         std::cerr << "***ERROR*** Failed to read team strategy." << std::endl;
         return false;
     }
+    return true;
 
-    */
+    
 }
 
 /*-------------------------------------------------------------------*/
@@ -230,6 +236,7 @@ SamplePlayer::initImpl( CmdLineParser & cmd_parser )
 void
 SamplePlayer::actionImpl()
 {
+    Strategy::instance().update( world() );
     const double angleTheta = 15.0;
     const WorldModel & wm = this->world();
    /* AngleDeg ball_place_angle = ( wm.ball().pos().y > 0.0
@@ -238,10 +245,11 @@ SamplePlayer::actionImpl()
     
     AngleDeg angle_diff = wm.ball().angleFromSelf() - ball_place_angle;*/
     Vector2D sub_target;
+    double mag = 2.0;
     if(wm.ball().pos().y < wm.self().pos().y){
-        sub_target = wm.ball().pos() -  Vector2D::polar2vector(5.0,wm.ball().angleFromSelf() + 135.0);
+        sub_target = wm.ball().pos() -  Vector2D::polar2vector(mag,wm.ball().angleFromSelf() + 135.0);
     }else{
-        sub_target = wm.ball().pos() +  Vector2D::polar2vector(5.0,wm.ball().angleFromSelf() + 135.0);
+        sub_target = wm.ball().pos() +  Vector2D::polar2vector(mag,wm.ball().angleFromSelf() + 135.0);
     }    
     if ( wm.gameMode().type() == GameMode::BeforeKickOff
          || wm.gameMode().type() == GameMode::AfterGoal_ ){
@@ -252,20 +260,10 @@ SamplePlayer::actionImpl()
         this->setViewAction( new View_Tactical() );
         return;
     }
-    if(wm.self().pos().x>wm.ball().pos().x - 0.25){
-        //angle_diff.abs() > angleTheta){
-        Body_GoToPoint(sub_target,1,ServerParam::i().maxDashPower()).execute(this);
-        this->setNeckAction(new Neck_TurnToBallOrScan());
-    }else{
-        if ( ! Body_GoToPoint( wm.ball().pos(), 1, ServerParam::i().maxDashPower()).execute( this ) || wm.self().isKickable () ) {
-            Vector2D face_point( 100.0,ServerParam::i().theirTeamGoalPos().y + 10.0 );
-            if(!Body_TurnToPoint( face_point ).execute( this )){
-                Vector2D targetGoal(100.0,ServerParam::i().theirTeamGoalPos().y + 10.0 );
-                Body_TackleToPoint(face_point).execute(this);
-            }   
-        }
-        this->setNeckAction(new Neck_TurnToBallOrScan());
+    if(!Bhv_KickToGoal().execute(this)){
+        Bhv_GoToBall().execute(this);
     }
+    this->setNeckAction(new Neck_TurnToBallOrScan());
     /*
     if(wm.self().isKickable ()) {
         //Vector2D face_point= wm.self().pos();

@@ -32,7 +32,7 @@
 
 class Bhv_GoToStaticBall
     : public rcsc::SoccerBehavior {
-private:
+   private:
     const rcsc::AngleDeg M_ball_place_angle; // global angle from self final kick position
 
 public:
@@ -41,6 +41,15 @@ public:
       { }
 
     bool execute( rcsc::PlayerAgent * agent );
+/*private:
+    const rcsc::AngleDeg M_ball_place_angle; // global angle from self final kick position
+
+public:
+    Bhv_GoToStaticBall( const rcsc::AngleDeg & ball_place_angle )
+        : M_ball_place_angle( ball_place_angle )
+      { }
+
+    bool execute( rcsc::PlayerAgent * agent );*/
 };
 
 #endif

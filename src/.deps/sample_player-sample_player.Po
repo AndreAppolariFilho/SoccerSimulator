@@ -509,8 +509,9 @@ sample_player-sample_player.o: sample_player.cpp \
  /usr/local/include/rcsc/player/soccer_action.h bhv_set_play.h \
  bhv_set_play_kick_in.h bhv_set_play_indirect_free_kick.h \
  bhv_basic_offensive_kick.h bhv_custom_before_kick_off.h \
- ../src/chain_action/bhv_strict_check_shoot.h view_tactical.h \
- intention_receive.h /usr/local/include/rcsc/player/soccer_intention.h \
+ bhv_go_to_static_ball.h bhv_go_to_ball.h bhv_kick_to_goal.h \
+ view_tactical.h intention_receive.h \
+ /usr/local/include/rcsc/player/soccer_intention.h \
  /usr/include/c++/5/queue /usr/include/c++/5/bits/stl_queue.h \
  /usr/local/include/rcsc/action/basic_actions.h \
  /usr/local/include/rcsc/action/arm_off.h \
@@ -542,6 +543,9 @@ sample_player-sample_player.o: sample_player.cpp \
  /usr/local/include/rcsc/action/neck_scan_field.h \
  /usr/local/include/rcsc/action/neck_turn_to_ball_or_scan.h \
  /usr/local/include/rcsc/action/view_synch.h \
+ /usr/local/include/rcsc/action/body_hold_ball.h \
+ /usr/local/include/rcsc/action/body_hold_ball2008.h \
+ /usr/local/include/rcsc/action/bhv_go_to_point_look_ball.h \
  /usr/local/include/rcsc/action/kick_table.h \
  /usr/local/include/rcsc/player/say_message_builder.h \
  /usr/local/include/rcsc/common/say_message_parser.h \
@@ -2120,7 +2124,11 @@ bhv_basic_offensive_kick.h:
 
 bhv_custom_before_kick_off.h:
 
-../src/chain_action/bhv_strict_check_shoot.h:
+bhv_go_to_static_ball.h:
+
+bhv_go_to_ball.h:
+
+bhv_kick_to_goal.h:
 
 view_tactical.h:
 
@@ -2191,6 +2199,12 @@ intention_receive.h:
 /usr/local/include/rcsc/action/neck_turn_to_ball_or_scan.h:
 
 /usr/local/include/rcsc/action/view_synch.h:
+
+/usr/local/include/rcsc/action/body_hold_ball.h:
+
+/usr/local/include/rcsc/action/body_hold_ball2008.h:
+
+/usr/local/include/rcsc/action/bhv_go_to_point_look_ball.h:
 
 /usr/local/include/rcsc/action/kick_table.h:
 

@@ -105,6 +105,8 @@ am__objects_3 = sample_player-bhv_basic_move.$(OBJEXT) \
 	sample_player-bhv_set_play_kick_off.$(OBJEXT) \
 	sample_player-bhv_their_goal_kick_move.$(OBJEXT) \
 	sample_player-bhv_penalty_kick.$(OBJEXT) \
+    sample_player-bhv_go_to_ball.$(OBJEXT) \
+    sample_player-bhv_kick_to_goal.$(OBJEXT) \
 	sample_player-neck_default_intercept_neck.$(OBJEXT) \
 	sample_player-neck_goalie_turn_neck.$(OBJEXT) \
 	sample_player-neck_offensive_intercept_neck.$(OBJEXT) \
@@ -263,10 +265,12 @@ PLAYERSOURCES = \
 	bhv_basic_offensive_kick.cpp \
 	bhv_basic_tackle.cpp \
 	bhv_custom_before_kick_off.cpp \
+    bhv_go_to_ball.cpp \
 	bhv_go_to_static_ball.cpp \
 	bhv_goalie_basic_move.cpp \
 	bhv_goalie_chase_ball.cpp \
 	bhv_goalie_free_kick.cpp \
+    bhv_kick_to_goal.cpp \
 	bhv_prepare_set_play_kick.cpp \
 	bhv_set_play.cpp \
 	bhv_set_play_free_kick.cpp \
@@ -306,10 +310,12 @@ PLAYERHEADERS = \
 	bhv_basic_offensive_kick.h \
 	bhv_basic_tackle.h \
 	bhv_custom_before_kick_off.h \
+    bhv_go_to_ball.h \
 	bhv_go_to_static_ball.h \
 	bhv_goalie_basic_move.h \
 	bhv_goalie_chase_ball.h \
 	bhv_goalie_free_kick.h \
+    bhv_kick_to_goal.h \
 	bhv_prepare_set_play_kick.h \
 	bhv_set_play.h \
 	bhv_set_play_free_kick.h \
@@ -588,10 +594,12 @@ include ./$(DEPDIR)/sample_player-bhv_basic_offensive_kick.Po
 include ./$(DEPDIR)/sample_player-bhv_basic_tackle.Po
 include ./$(DEPDIR)/sample_player-bhv_chain_action.Po
 include ./$(DEPDIR)/sample_player-bhv_custom_before_kick_off.Po
+include ./$(DEPDIR)/sample_player-bhv_go_to_ball.Po
 include ./$(DEPDIR)/sample_player-bhv_go_to_static_ball.Po
 include ./$(DEPDIR)/sample_player-bhv_goalie_basic_move.Po
 include ./$(DEPDIR)/sample_player-bhv_goalie_chase_ball.Po
 include ./$(DEPDIR)/sample_player-bhv_goalie_free_kick.Po
+include ./$(DEPDIR)/sample_player-bhv_kick_to_goal.Po
 include ./$(DEPDIR)/sample_player-bhv_normal_dribble.Po
 include ./$(DEPDIR)/sample_player-bhv_pass_kick_find_receiver.Po
 include ./$(DEPDIR)/sample_player-bhv_penalty_kick.Po
@@ -1181,6 +1189,20 @@ sample_player-bhv_custom_before_kick_off.obj: bhv_custom_before_kick_off.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(sample_player_CXXFLAGS) $(CXXFLAGS) -c -o sample_player-bhv_custom_before_kick_off.obj `if test -f 'bhv_custom_before_kick_off.cpp'; then $(CYGPATH_W) 'bhv_custom_before_kick_off.cpp'; else $(CYGPATH_W) '$(srcdir)/bhv_custom_before_kick_off.cpp'; fi`
 
+sample_player-bhv_go_to_ball.o: bhv_go_to_ball.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(sample_player_CXXFLAGS) $(CXXFLAGS) -MT sample_player-bhv_go_to_ball.o -MD -MP -MF $(DEPDIR)/sample_player-bhv_go_to_ball.Tpo -c -o sample_player-bhv_go_to_ball.o `test -f 'bhv_go_to_ball.cpp' || echo '$(srcdir)/'`bhv_go_to_ball.cpp
+	$(am__mv) $(DEPDIR)/sample_player-bhv_go_to_ball.Tpo $(DEPDIR)/sample_player-bhv_go_to_ball.Po
+#	source='bhv_go_to_ball.cpp' object='sample_player-bhv_go_to_ball.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(sample_player_CXXFLAGS) $(CXXFLAGS) -c -o sample_player-bhv_go_to_ball.o `test -f 'bhv_go_to_ball.cpp' || echo '$(srcdir)/'`bhv_go_to_ball.cpp
+
+sample_player-bhv_go_to_ball.obj: bhv_go_to_ball.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(sample_player_CXXFLAGS) $(CXXFLAGS) -MT sample_player-bhv_go_to_ball.obj -MD -MP -MF $(DEPDIR)/sample_player-bhv_go_to_ball.Tpo -c -o sample_player-bhv_go_to_ball.obj `if test -f 'bhv_go_to_ball.cpp'; then $(CYGPATH_W) 'bhv_go_to_ball.cpp'; else $(CYGPATH_W) '$(srcdir)/bhv_go_to_ball.cpp'; fi`
+	$(am__mv) $(DEPDIR)/sample_player-bhv_go_to_ball.Tpo $(DEPDIR)/sample_player-bhv_go_to_ball.Po
+#	source='bhv_go_to_static_ball.cpp' object='sample_player-bhv_go_to_ball.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(sample_player_CXXFLAGS) $(CXXFLAGS) -c -o sample_player-bhv_go_to_ball.obj `if test -f 'bhv_go_to_ball.cpp'; then $(CYGPATH_W) 'bhv_go_to_ball.cpp'; else $(CYGPATH_W) '$(srcdir)/bhv_go_to_ball.cpp'; fi`
+
 sample_player-bhv_go_to_static_ball.o: bhv_go_to_static_ball.cpp
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(sample_player_CXXFLAGS) $(CXXFLAGS) -MT sample_player-bhv_go_to_static_ball.o -MD -MP -MF $(DEPDIR)/sample_player-bhv_go_to_static_ball.Tpo -c -o sample_player-bhv_go_to_static_ball.o `test -f 'bhv_go_to_static_ball.cpp' || echo '$(srcdir)/'`bhv_go_to_static_ball.cpp
 	$(am__mv) $(DEPDIR)/sample_player-bhv_go_to_static_ball.Tpo $(DEPDIR)/sample_player-bhv_go_to_static_ball.Po
@@ -1236,6 +1258,20 @@ sample_player-bhv_goalie_free_kick.obj: bhv_goalie_free_kick.cpp
 #	source='bhv_goalie_free_kick.cpp' object='sample_player-bhv_goalie_free_kick.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(sample_player_CXXFLAGS) $(CXXFLAGS) -c -o sample_player-bhv_goalie_free_kick.obj `if test -f 'bhv_goalie_free_kick.cpp'; then $(CYGPATH_W) 'bhv_goalie_free_kick.cpp'; else $(CYGPATH_W) '$(srcdir)/bhv_goalie_free_kick.cpp'; fi`
+
+sample_player-bhv_kick_to_goal.o: bhv_kick_to_goal.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(sample_player_CXXFLAGS) $(CXXFLAGS) -MT sample_player-bhv_kick_to_goal.o -MD -MP -MF $(DEPDIR)/sample_player-bhv_kick_to_goal.Tpo -c -o sample_player-bhv_kick_to_goal.o `test -f 'bhv_kick_to_goal.cpp' || echo '$(srcdir)/'`bhv_kick_to_goal.cpp
+	$(am__mv) $(DEPDIR)/sample_player-bhv_kick_to_goal.Tpo $(DEPDIR)/sample_player-bhv_kick_to_goal.Po
+#	source='bhv_go_to_ball.cpp' object='sample_player-bhv_go_to_ball.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(sample_player_CXXFLAGS) $(CXXFLAGS) -c -o sample_player-bhv_go_to_ball.o `test -f 'bhv_go_to_ball.cpp' || echo '$(srcdir)/'`bhv_go_to_ball.cpp
+
+sample_player-bhv_kick_to_goal.obj: bhv_kick_to_goal.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(sample_player_CXXFLAGS) $(CXXFLAGS) -MT sample_player-bhv_kick_to_goal.obj -MD -MP -MF $(DEPDIR)/sample_player-bhv_kick_to_goal.Tpo -c -o sample_player-bhv_kick_to_goal.obj `if test -f 'bhv_kick_to_goal.cpp'; then $(CYGPATH_W) 'bhv_kick_to_goal.cpp'; else $(CYGPATH_W) '$(srcdir)/bhv_kick_to_goal.cpp'; fi`
+	$(am__mv) $(DEPDIR)/sample_player-bhv_kick_to_goal.Tpo $(DEPDIR)/sample_player-bhv_kick_to_goal.Po
+#	source='bhv_go_to_static_ball.cpp' object='sample_player-bhv_go_to_ball.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(sample_player_CXXFLAGS) $(CXXFLAGS) -c -o sample_player-bhv_go_to_ball.obj `if test -f 'bhv_go_to_ball.cpp'; then $(CYGPATH_W) 'bhv_go_to_ball.cpp'; else $(CYGPATH_W) '$(srcdir)/bhv_go_to_ball.cpp'; fi`
 
 sample_player-bhv_prepare_set_play_kick.o: bhv_prepare_set_play_kick.cpp
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(sample_player_CXXFLAGS) $(CXXFLAGS) -MT sample_player-bhv_prepare_set_play_kick.o -MD -MP -MF $(DEPDIR)/sample_player-bhv_prepare_set_play_kick.Tpo -c -o sample_player-bhv_prepare_set_play_kick.o `test -f 'bhv_prepare_set_play_kick.cpp' || echo '$(srcdir)/'`bhv_prepare_set_play_kick.cpp
